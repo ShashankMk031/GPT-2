@@ -1,9 +1,12 @@
 import tiktoken
+# Load dataset in streaming mode
 from datasets import load_dataset
 
-#Loading OpenWebText data
-dataset = load_dataset("openwebtext", split="train",streaming = True, trust_remote_code=True) #
-text = '\n'.join(dataset["text"] for example in dataset)
+dataset = load_dataset("openwebtext", split="train", streaming=True, trust_remote_code=True)
+
+# Collect text data properly
+text = '\n'.join(example["text"] for example in dataset)  # Correct way to extract text
+
 
 #Tokenizer 
 tokenzier = tiktoken.get_encoding("gpt2") 
