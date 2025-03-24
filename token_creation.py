@@ -2,8 +2,8 @@ import tiktoken
 from datasets import load_dataset
 
 #Loading OpenWebText data
-dataset = load_dataset("openwebtext", split="train", trust_remote_code=True) #streaming = True
-text = '\n'.join(dataset["text"]) # ["text"] for example in dataset
+dataset = load_dataset("openwebtext", split="train",streaming = True, trust_remote_code=True) #
+text = '\n'.join(dataset["text"] for example in dataset)
 
 #Tokenizer 
 tokenzier = tiktoken.get_encoding("gpt2") 
